@@ -2,10 +2,61 @@
     <h2>{{hero.name | uppercase}} Details</h2>
     <div><span>id: </span>{{hero.id}}</div>
     <div>
-        <label>Hero name:
-            <input id="hero-name" [(ngModel)]="hero.name" placeholder="Enter a name">
-        </label>
+        <label for="hero-name">Hero name:</label>
     </div>
+    <input id="hero-name" [(ngModel)]="hero.name" placeholder="Enter a name">
+
+    <div>
+        <label for="hero-race">Race:</label>
+    </div>
+    <select id="hero-race" [(ngModel)]="hero.race">
+        <option>human</option>
+        <option>goblin</option>
+        <option>elf</option>
+        <option>undead</option>
+    </select>
+
+    <div>
+        <label for="hero-type">Type:</label>
+    </div>
+    <select id="hero-type" [(ngModel)]="hero.type">
+        <option>medic</option>
+        <option>criminal</option>
+        <option>paladin</option>
+        <option>magician</option>
+        <option>priest</option>
+        <option>scientist</option>
+        <option>musician</option>
+    </select>
+
+    <div>
+        <label for="hero-level">Level:</label>
+    </div>
+    <input id="hero-level"
+        [(ngModel)]="hero.level"
+        placeholder="Enter a level"
+        type="number"
+        min="1"
+        max="100"
+        #level="ngModel">
+        <div *ngIf="level.invalid && (level.dirty || level.touched)">
+            <div *ngIf="level.errors!['max']" class="wrongValue">
+                The level of hero couldn't be more than 100
+            </div>
+            <div *ngIf="level.errors!['min']" class="wrongValue">
+                The level of hero couldn't be lower than 1
+            </div>
+        </div>
+
+    <div>
+        <label>Power:</label>
+    </div>
+    <input id="hero-power"
+        [(ngModel)]="hero.power"
+        placeholder="Enter a value of power"
+        type="number"
+        min="1"
+        max="100">
 </div>
 <button type="button" (click)="goBack()">go back</button>
 <button type="button" (click)="save()">save</button>
