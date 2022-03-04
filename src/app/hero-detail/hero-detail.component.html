@@ -39,14 +39,14 @@
         min="1"
         max="100"
         #level="ngModel">
-        <div *ngIf="level.invalid && (level.dirty || level.touched)">
-            <div *ngIf="level.errors!['max']" class="wrongValue">
-                The level of hero couldn't be more than 100
-            </div>
-            <div *ngIf="level.errors!['min']" class="wrongValue">
-                The level of hero couldn't be lower than 1
-            </div>
+    <div *ngIf="level.invalid && (level.dirty || level.touched)">
+        <div *ngIf="level.errors!['max']" class="wrongValue">
+            The level of hero couldn't be more than 100
         </div>
+        <div *ngIf="level.errors!['min']" class="wrongValue">
+            The level of hero couldn't be lower than 1
+        </div>
+    </div>
 
     <div>
         <label>Power:</label>
@@ -56,7 +56,16 @@
         placeholder="Enter a value of power"
         type="number"
         min="1"
-        max="100">
+        max="100"
+        #power="ngModel">
+    <div *ngIf="power.invalid && (power.dirty || power.touched)">
+        <div *ngIf="power.errors!['max']" class="wrongValue">
+            The power of hero couldn't be more than 100
+        </div>
+        <div *ngIf="power.errors!['min']" class="wrongValue">
+            The power of hero couldn't be lower than 1
+        </div>
+    </div>
 </div>
 <button type="button" (click)="goBack()">go back</button>
 <button type="button" (click)="save()">save</button>
