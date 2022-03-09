@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-/* import { MessageService } from '../message.service'; */
 
 @Component({
   selector: 'app-heroes',
@@ -23,10 +22,16 @@ export class HeroesComponent implements OnInit {
       .subscribe(heroes => this.heroes = heroes)
   }
 
-  add(name: string): void {
+  add(name: string, race: string, type: string, lev: string, pow: string): void {
+
     name = name.trim();
-    if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
+    if (!name) { return; };
+    if (!lev) {lev = '1'};
+    if (!pow) {pow = '1'};
+
+    let level = Number(lev);
+    let power = Number(pow);
+    this.heroService.addHero({ name, race, type, level, power } as Hero)
       .subscribe(hero => {
         this.heroes.push(hero);
       });

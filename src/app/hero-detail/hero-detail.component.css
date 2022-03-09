@@ -1,18 +1,11 @@
-label {
-    color: #435960;
-    font-weight: bold;
-}
 input, select {
     font-size: 1em;
     padding: .5rem;
     margin-bottom: .6rem
 }
-select {
-  width: 13.5rem;
-}
 button {
     margin-top: 20px;
-    background-color: #eee;
+    margin-right: 5px;
     padding: 1rem;
     border-radius: 4px;
     font-size: 1rem;
@@ -20,11 +13,19 @@ button {
 button:hover {
     background-color: #cfd8dc;
 }
-button:disabled {
-    background-color: #eee;
-    color: #ccc;
-    cursor: auto;
-}
 .wrongValue {
     color: red;
 }
+.details {
+    max-width: 30em;
+}
+.heroName {
+    width: 100%;
+}
+
+.heroParameters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+

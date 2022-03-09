@@ -4,21 +4,21 @@
   padding: 0;
   width: 15em;
 }
+.creatingNewHero {
+  max-width: 30em;
+}
 
-input {
+.form-field {
   display: block;
-  width: 100%;
-  padding: .5rem;
-  margin: 1rem 0;
-  box-sizing: border-box;
 }
 
-.heroes li {
-  position: relative;
-  cursor: pointer;
+.creatingNewHeroRaceType {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.heroes li:hover {
+.heroes mat-list-item:hover {
   left: .1em;
 }
 
@@ -75,12 +75,14 @@ input {
 button.delete {
   position: absolute;
   left: 210px;
-  top: 5px;
+  top: 4px;
   background-color: white;
   color:  #525252;
   font-size: 1.1rem;
   margin: 0;
-  padding: 1px 10px 3px 10px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
 }
 
 button.delete:hover {
