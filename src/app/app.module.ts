@@ -20,6 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatSidenavModule,
     MatFormFieldModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
