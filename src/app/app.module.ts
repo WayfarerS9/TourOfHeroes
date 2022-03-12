@@ -21,37 +21,37 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MessageComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    DashboardComponent,
-    HeroSearchComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatFormFieldModule,
-    MatListModule,
-    MatTableModule,
-
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MessageComponent,
+        HeroesComponent,
+        HeroDetailComponent,
+        DashboardComponent,
+        HeroSearchComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        HttpClientInMemoryWebApiModule.forRoot(
+            InMemoryDataService, { dataEncapsulation: false }
+            ),
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatFormFieldModule,
+        MatListModule,
+        MatTableModule,
+        MatDialogModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
+
 export class AppModule { }

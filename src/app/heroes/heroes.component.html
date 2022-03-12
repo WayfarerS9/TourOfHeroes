@@ -1,66 +1,64 @@
 <h2>My heroes:</h2>
 
-
-
-
-
-
-
-
-
-
-
-
 <table mat-table [dataSource]="dataSource" class="heroesTable" #heroTable>
 
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let person"> {{person.id}} </td>
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let person"> {{person.id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let person"> {{person.name}} </td>
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let person"> {{person.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="race">
-      <th mat-header-cell *matHeaderCellDef> Race </th>
-      <td mat-cell *matCellDef="let person"> {{person.race}} </td>
+        <th mat-header-cell *matHeaderCellDef> Race </th>
+        <td mat-cell *matCellDef="let person"> {{person.race}} </td>
     </ng-container>
 
     <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef> Type </th>
-      <td mat-cell *matCellDef="let person"> {{person.type}} </td>
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let person"> {{person.type}} </td>
     </ng-container>
 
     <ng-container matColumnDef="level">
-      <th mat-header-cell *matHeaderCellDef> Level </th>
-      <td mat-cell *matCellDef="let person"> {{person.level}} </td>
+        <th mat-header-cell *matHeaderCellDef> Level </th>
+        <td mat-cell *matCellDef="let person"> {{person.level}} </td>
     </ng-container>
 
     <ng-container matColumnDef="power">
-      <th mat-header-cell *matHeaderCellDef> Power </th>
-      <td mat-cell *matCellDef="let person"> {{person.power}} </td>
+        <th mat-header-cell *matHeaderCellDef> Power </th>
+        <td mat-cell *matCellDef="let person"> {{person.power}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let person">
+            <button
+                mat-stroked-button
+                class="edit">
+                    Edit
+            </button>
+        </td>
     </ng-container>
 
     <ng-container matColumnDef="del">
-      <th mat-header-cell *matHeaderCellDef>  </th>
-      <td mat-cell *matCellDef="let person">
-        <button mat-fab color="primary"
-          class="delete"
-          (click)="delete(person)">
-          <mat-icon>delete</mat-icon>
-        </button>
-
-
-
-      </td>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let person">
+            <button
+                class="delete"
+                (click)="delete(person)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
     </ng-container>
+
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
 
+</table>
 
 
 
