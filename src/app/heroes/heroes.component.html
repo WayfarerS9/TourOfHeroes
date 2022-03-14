@@ -1,6 +1,6 @@
 <h2>My heroes:</h2>
 
-<table mat-table [dataSource]="dataSource" class="heroesTable" #heroTable>
+<table mat-table [dataSource]="dataSource" class="heroesTable">
 
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -37,7 +37,8 @@
         <td mat-cell *matCellDef="let person">
             <button
                 mat-stroked-button
-                class="edit">
+                class="edit"
+                routerLink="/detail/{{person.id}}">
                     Edit
             </button>
         </td>
@@ -48,119 +49,20 @@
         <td mat-cell *matCellDef="let person">
             <button
                 class="delete"
-                (click)="delete(person)">
+                (click)="openDialog(person)">
                 <mat-icon>delete</mat-icon>
             </button>
         </td>
     </ng-container>
-
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 </table>
 
-
-
-  <!-- 
-<mat-list role="list" class="heroes">
-    <mat-list-item
-        role="listitem"
-        *ngFor="let hero of heroes">
-
-        <a routerLink="/detail/{{hero.id}}">
-            <span class="badge">{{hero.id}}</span> {{hero.name}}
-        </a>
-
-        <button mat-fab color="primary"
-            class="delete"
-            (click)="delete(hero)">
-            <mat-icon>delete</mat-icon>
-        </button>
-    </mat-list-item>
-</mat-list>
-
- -->
-
-
-<h2>Create a new hero:</h2>
-<div class="creatingNewHero">
-    <mat-form-field class="form-field" appearance="fill">
-        <mat-label>A name of a new hero</mat-label>
-        <input matInput type="text"
-            [(ngModel)]="heroName.value"
-            id="new-hero"
-            placeholder="Enter a name of a new hero"
-            #heroName>
-        <button *ngIf="heroName.value"
-            matSuffix
-            mat-icon-button
-            aria-label="Clear"
-            (click)="heroName.value=''">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-form-field>
-
-    <div class="creatingNewHeroRaceType">
-        <mat-form-field appearance="fill">
-            <mat-label>Choose a race of the hero</mat-label>
-            <select id="hero-race"
-                #heroRace
-                matNativeControl>
-                <option value="human">Human</option>
-                <option value="goblin">Goblin</option>
-                <option value="elf">Elf</option>
-                <option value="undead">Undead</option>
-            </select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Choose a type of the hero</mat-label>
-            <select id="hero-type"
-                #heroType
-                matNativeControl>
-                <option value="medic">Medic</option>
-                <option value="criminal">Criminal</option>
-                <option value="paladin">Paladin</option>
-                <option value="magician">Magician</option>
-                <option value="priest">Priest</option>
-                <option value="scientist">Scientist</option>
-                <option value="musician">Musician</option>
-            </select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Hero's level</mat-label>
-            <input
-                matInput
-                type="number"
-                placeholder="Enter a level of hero"
-                value=""
-                min="1"
-                max="100"
-                #heroLevel>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Hero's power</mat-label>
-            <input
-            matInput
-            type="number"
-            placeholder="Enter a power of hero"
-            value=""
-            min="1"
-            max="100"
-            #heroPower>
-        </mat-form-field>
-    </div>
-</div>
 <button
     mat-raised-button
     class="add-button"
-    (click)="add(heroName.value, heroRace.value, heroType.value,
-            heroLevel.value, heroPower.value);
-        heroName.value='';
-        heroLevel.value='';
-        heroPower.value=''">
-        Add hero
+    routerLink="/detail/new">
+        Add new
 </button>

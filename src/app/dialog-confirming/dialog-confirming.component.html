@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Do you really want to remove the hero?</h1>
+<div mat-dialog-content>WARNING! You will not be able to return the deleted item.</div>
+<div mat-dialog-actions>
+    <button
+        mat-button
+        mat-dialog-close
+        (click)='cancel()'>
+        Cancel
+    </button>
+    <button
+        mat-button
+        mat-dialog-close
+        (click)='delete()'>
+        Delete
+    </button>
+</div>

@@ -22,6 +22,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DialogConfirmingComponent } from './dialog-confirming/dialog-confirming.component';
+/* import { SnackBarsComponent } from './snack-bars/snack-bars.component'; */
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarCreateHeroComponent } from './snack-bar-create-hero/snack-bar-create-hero.component';
+import { SnackBarUpdateHeroComponent } from './snack-bar-update-hero/snack-bar-update-hero.component';
+import { SnackBarDeleteHeroComponent } from './snack-bar-delete-hero/snack-bar-delete-hero.component';
+import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +37,13 @@ import { MatDialogModule } from '@angular/material/dialog';
         HeroesComponent,
         HeroDetailComponent,
         DashboardComponent,
-        HeroSearchComponent
+        HeroSearchComponent,
+        DialogConfirmingComponent,
+        /* SnackBarsComponent, */
+        SnackBarCreateHeroComponent,
+        SnackBarUpdateHeroComponent,
+        SnackBarDeleteHeroComponent,
+        SnackBarErrorComponent,
     ],
     imports: [
         BrowserModule,
@@ -49,6 +62,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatListModule,
         MatTableModule,
         MatDialogModule,
+        MatSnackBarModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

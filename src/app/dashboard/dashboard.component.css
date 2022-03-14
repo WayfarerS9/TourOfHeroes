@@ -1,12 +1,12 @@
 h2 {
     text-align: center;
-  }
-  
-  .heroes-menu {
+}
+
+.heroes-menu {
     padding: 0;
     margin: auto;
     max-width: 1000px;
-  
+
     /* flexbox */
     display: flex;
     flex-direction: row;
@@ -14,9 +14,9 @@ h2 {
     justify-content: space-around;
     align-content: flex-start;
     align-items: flex-start;
-  }
-  
-  a {
+}
+
+a {
     border-radius: 2px;
     padding: 1rem;
     font-size: 1.2rem;
@@ -29,11 +29,11 @@ h2 {
     order: 0;
     flex: 0 1 auto;
     align-self: auto;
-  }
-  
-  @media (min-width: 600px) {
+}
+
+@media (min-width: 600px) {
     a {
-      width: 18%;
-      box-sizing: content-box;
+        width: 18%;
+        box-sizing: content-box;
     }
-  }
+}

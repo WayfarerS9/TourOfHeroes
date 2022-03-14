@@ -3,6 +3,7 @@ input, select {
     padding: .5rem;
     margin-bottom: .6rem
 }
+
 button {
     margin-top: 20px;
     margin-right: 5px;
@@ -10,15 +11,19 @@ button {
     border-radius: 4px;
     font-size: 1rem;
 }
+
 button:hover {
     background-color: #cfd8dc;
 }
+
 .wrongValue {
     color: red;
 }
+
 .details {
     max-width: 30em;
 }
+
 .heroName {
     width: 100%;
 }
@@ -28,4 +33,3 @@ button:hover {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-

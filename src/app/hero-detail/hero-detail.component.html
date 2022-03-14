@@ -1,95 +1,123 @@
-<div *ngIf="hero">
-    <h2>{{hero.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{hero.id}}</div>
+<h2 *ngIf="hero.id">{{hero.name | uppercase}} Details</h2>
+<div *ngIf="hero.id"><span>id: </span>{{hero.id}}</div>
+<h2 *ngIf="!hero.id">Creating hero details</h2>
 
-    <div class="details">
-        <mat-form-field class="heroName" appearance="fill">
-            <mat-label>Hero name:</mat-label>
-            <input matInput
-                type="text"
-                id="hero-name"
-                [(ngModel)]="hero.name"
-                placeholder="Enter a name">
+<div class="details">
+    <mat-form-field class="heroName" appearance="fill">
+        <mat-label>Hero name:</mat-label>
+        <input matInput
+            type="text"
+            id="hero-name"
+            [(ngModel)]="hero.name"
+            placeholder="Enter a name"
+            #name>
+    </mat-form-field>
+    <div class="heroParameters">
+        <mat-form-field appearance="fill">
+            <mat-label>Race:</mat-label>
+            <select id="hero-race"
+                matNativeControl
+                [(ngModel)]="hero.race"
+                #race>
+                <option value="human">Human</option>
+                <option value="goblin">Goblin</option>
+                <option value="elf">Elf</option>
+                <option value="undead">Undead</option>
+            </select>
         </mat-form-field>
-        <div class="heroParameters">
-            <mat-form-field appearance="fill">
-                <mat-label>Race:</mat-label>
-                <select id="hero-race"
-                    matNativeControl
-                    [(ngModel)]="hero.race">
-                    <option value="human">Human</option>
-                    <option value="goblin">Goblin</option>
-                    <option value="elf">Elf</option>
-                    <option value="undead">Undead</option>
-                </select>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Type:</mat-label>
-                <select id="hero-type"
-                    [(ngModel)]="hero.type"
-                    matNativeControl>
-                    <option value="medic">Medic</option>
-                    <option value="criminal">Criminal</option>
-                    <option value="paladin">Paladin</option>
-                    <option value="magician">Magician</option>
-                    <option value="priest">Priest</option>
-                    <option value="scientist">Scientist</option>
-                    <option value="musician">Musician</option>
-                </select>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Level:</mat-label>
-                <input
-                    matInput
-                    id="hero-level"
-                    [(ngModel)]="hero.level"
-                    placeholder="Enter a level"
-                    type="number"
-                    min="1"
-                    max="100"
-                    #level="ngModel">
-            </mat-form-field>
-            <div *ngIf="level.invalid && (level.dirty || level.touched)">
-                <div *ngIf="level.errors!['max']" class="wrongValue">
-                    The level of hero couldn't be more than 100
-                </div>
-                <div *ngIf="level.errors!['min']" class="wrongValue">
-                    The level of hero couldn't be lower than 1
-                </div>
-            </div>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Power</mat-label>
-                <input
+        <mat-form-field appearance="fill">
+            <mat-label>Type:</mat-label>
+            <select id="hero-type"
+                [(ngModel)]="hero.type"
+                matNativeControl
+                #type>
+                <option value="medic">Medic</option>
+                <option value="criminal">Criminal</option>
+                <option value="paladin">Paladin</option>
+                <option value="magician">Magician</option>
+                <option value="priest">Priest</option>
+                <option value="scientist">Scientist</option>
+                <option value="musician">Musician</option>
+            </select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Level:</mat-label>
+            <input
                 matInput
-                id="hero-power"
-                [(ngModel)]="hero.power"
-                placeholder="Enter a value of power"
+                id="hero-level"
+                [(ngModel)]="hero.level"
+                placeholder="Enter a level"
                 type="number"
                 min="1"
                 max="100"
-                #power="ngModel">
-            </mat-form-field>
-            <div *ngIf="power.invalid && (power.dirty || power.touched)">
-                <div *ngIf="power.errors!['max']" class="wrongValue">
-                    The power of hero couldn't be more than 100
-                </div>
-                <div *ngIf="power.errors!['min']" class="wrongValue">
-                    The power of hero couldn't be lower than 1
-                </div>
+                #level="ngModel">
+        </mat-form-field>
+
+        <!--
+        <div *ngIf="level.invalid && (level.dirty || level.touched)">
+            <div *ngIf="level.errors!['max']" class="wrongValue">
+                The level of hero couldn't be more than 100
+            </div>
+            <div *ngIf="level.errors!['min']" class="wrongValue">
+                The level of hero couldn't be lower than 1
             </div>
         </div>
+         -->
+
+        <mat-form-field appearance="fill">
+            <mat-label>Power</mat-label>
+            <input
+            matInput
+            id="hero-power"
+            [(ngModel)]="hero.power"
+            placeholder="Enter a value of power"
+            type="number"
+            min="1"
+            max="100"
+            #power="ngModel">
+        </mat-form-field>
+
+        <!--
+        <div *ngIf="power.invalid && (power.dirty || power.touched)">
+            <div *ngIf="power.errors!['max']" class="wrongValue">
+                The power of hero couldn't be more than 100
+            </div>
+            <div *ngIf="power.errors!['min']" class="wrongValue">
+                The power of hero couldn't be lower than 1
+            </div>
+        </div>
+         -->
+
     </div>
 </div>
+
 <button
+    *ngIf="hero.id"
     mat-raised-button
     (click)="goBack()">
-        go back
+        Cancel
 </button>
 <button
+    *ngIf="hero.id"
     mat-raised-button
     (click)="save()">
-        save
+        Save
+</button>
+
+<button
+    *ngIf="!hero.id"
+    mat-raised-button
+    (click)="reset()">
+        Reset
+</button>
+
+<button
+    *ngIf="!hero.id"
+    mat-raised-button
+    (click)="add(name.value,
+                race.value,
+                type.value,
+                level.value,
+                power.value)">
+        Save
 </button>
