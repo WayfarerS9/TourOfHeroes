@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 import { SnackBarsService } from './snack-bars.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class HeroService {
     private heroesUrl = 'api/heroes';
 
     getHeroes(): Observable<Hero[]> {
-        return this.http.get<Hero[]>(this.heroesUrl)
+        return this.http.get<Hero[]>('http://localhost:3000/heroes/')
             .pipe(
                 tap(_ => this.log('fetched heroes')),
                 catchError(this.handleError<Hero[]>('getHeroes', []))
@@ -37,18 +37,18 @@ export class HeroService {
 
             return of(result as T);
         };
-    }
+    };
 
     getHero(id: number): Observable<Hero> {
-        const url = `${this.heroesUrl}/${id}`;
-        return this.http.get<Hero>(url).pipe(
-            tap(_ => this.log(`fetched hero id=${id}`)),
-            catchError(this.handleError<Hero>(`getHero id=${id}`))
-        );
-    }
+        return this.http.get<Hero>(`http://localhost:3000/hero/${id}/`)
+            .pipe(
+                tap(_ => this.log(`fetched hero id=${id}`)),
+                catchError(this.handleError<Hero>(`getHero id=${id}`))
+            );
+    };
 
     updateHero(hero: Hero): Observable<any> {
-        return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+        return this.http.put('http://localhost:3000/hero/', hero, this.httpOptions).pipe(
             tap(_ => {
                 this.log(`updated hero id=${hero.id}`);
                 this.snackBarsService.openSnackBar('updateHero');
@@ -66,9 +66,10 @@ export class HeroService {
     }
 
     addHero(hero: Hero): Observable<Hero> {
-        return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
+        return this.http.post<Hero>('http://localhost:3000/hero/', hero)
+        .pipe(
             tap((newHero: Hero) => {
-                this.log(`added hero w/ id=${newHero.id}`);
+                this.log(`added hero id=${newHero.id}, name: ${newHero.name}`);
                 this.snackBarsService.openSnackBar('createHero');
             }),
             catchError(this.handleError<Hero>('addHero'))
@@ -77,15 +78,14 @@ export class HeroService {
 
     deleteHero(id: number): Observable<Hero> {
 
-        const url = `${this.heroesUrl}/${id}`;
-        return this.http.delete<Hero>(url, this.httpOptions).pipe(
-            tap(_ => {
+        return this.http.delete<Hero>(`http://localhost:3000/hero/${id}`)
+            .pipe(tap(_ => {
                 this.log(`deleted hero id=${id}`);
                 this.snackBarsService.openSnackBar('deleteHero');
             }),
             catchError(this.handleError<Hero>('deleteHero'))
         );
-    }
+    };
 
     searchHeroes(term: string): Observable<Hero[]> {
         if (!term.trim()) {

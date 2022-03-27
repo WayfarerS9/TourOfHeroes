@@ -10,8 +10,6 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,7 +21,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogConfirmingComponent } from './dialog-confirming/dialog-confirming.component';
-/* import { SnackBarsComponent } from './snack-bars/snack-bars.component'; */
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarCreateHeroComponent } from './snack-bar-create-hero/snack-bar-create-hero.component';
 import { SnackBarUpdateHeroComponent } from './snack-bar-update-hero/snack-bar-update-hero.component';
@@ -50,9 +47,9 @@ import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.compon
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(
+/*         HttpClientInMemoryWebApiModule.forRoot(
             InMemoryDataService, { dataEncapsulation: false }
-            ),
+            ), */
         BrowserAnimationsModule,
         MatButtonModule,
         MatInputModule,
