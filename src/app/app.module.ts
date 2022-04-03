@@ -26,6 +26,8 @@ import { SnackBarCreateHeroComponent } from './snack-bar-create-hero/snack-bar-c
 import { SnackBarUpdateHeroComponent } from './snack-bar-update-hero/snack-bar-update-hero.component';
 import { SnackBarDeleteHeroComponent } from './snack-bar-delete-hero/snack-bar-delete-hero.component';
 import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
     declarations: [
@@ -36,20 +38,18 @@ import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.compon
         DashboardComponent,
         HeroSearchComponent,
         DialogConfirmingComponent,
-        /* SnackBarsComponent, */
         SnackBarCreateHeroComponent,
         SnackBarUpdateHeroComponent,
         SnackBarDeleteHeroComponent,
         SnackBarErrorComponent,
+        LoginComponent,
+
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-/*         HttpClientInMemoryWebApiModule.forRoot(
-            InMemoryDataService, { dataEncapsulation: false }
-            ), */
         BrowserAnimationsModule,
         MatButtonModule,
         MatInputModule,

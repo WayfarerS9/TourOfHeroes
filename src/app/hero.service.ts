@@ -16,10 +16,12 @@ export class HeroService {
         private messageService: MessageService,
         private snackBarsService: SnackBarsService) { }
 
-    private heroesUrl = 'api/heroes';
-
     getHeroes(): Observable<Hero[]> {
-        return this.http.get<Hero[]>('http://localhost:3000/heroes/')
+        return this.http.get<Hero[]>('http://localhost:3000/heroes/', {
+            headers: {
+                'authorization': window.localStorage['auth_token']
+            }
+        })
             .pipe(
                 tap(_ => this.log('fetched heroes')),
                 catchError(this.handleError<Hero[]>('getHeroes', []))
@@ -40,7 +42,11 @@ export class HeroService {
     };
 
     getHero(id: number): Observable<Hero> {
-        return this.http.get<Hero>(`http://localhost:3000/hero/${id}/`)
+        return this.http.get<Hero>(`http://localhost:3000/hero/${id}/`, {
+            headers: {
+                'authorization': window.localStorage['auth_token']
+            }
+        })
             .pipe(
                 tap(_ => this.log(`fetched hero id=${id}`)),
                 catchError(this.handleError<Hero>(`getHero id=${id}`))
@@ -48,8 +54,8 @@ export class HeroService {
     };
 
     updateHero(hero: Hero): Observable<any> {
-        return this.http.put('http://localhost:3000/hero/', hero, this.httpOptions).pipe(
-            tap(_ => {
+        return this.http.put('http://localhost:3000/hero/', hero, this.httpOptions)
+        .pipe(tap(_ => {
                 this.log(`updated hero id=${hero.id}`);
                 this.snackBarsService.openSnackBar('updateHero');
             }),
@@ -58,15 +64,18 @@ export class HeroService {
     }
 
     httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                   'authorization': window.localStorage['auth_token']
+        })
     };
+
 
     private log(message: string) {
         this.messageService.add(`HeroService: ${message}`);
     }
 
     addHero(hero: Hero): Observable<Hero> {
-        return this.http.post<Hero>('http://localhost:3000/hero/', hero)
+        return this.http.post<Hero>('http://localhost:3000/hero/', hero, this.httpOptions)
         .pipe(
             tap((newHero: Hero) => {
                 this.log(`added hero id=${newHero.id}, name: ${newHero.name}`);
@@ -78,7 +87,7 @@ export class HeroService {
 
     deleteHero(id: number): Observable<Hero> {
 
-        return this.http.delete<Hero>(`http://localhost:3000/hero/${id}`)
+        return this.http.delete<Hero>(`http://localhost:3000/hero/${id}`, this.httpOptions)
             .pipe(tap(_ => {
                 this.log(`deleted hero id=${id}`);
                 this.snackBarsService.openSnackBar('deleteHero');
@@ -91,7 +100,7 @@ export class HeroService {
         if (!term.trim()) {
             return of([]);
         }
-        return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+        return this.http.get<Hero[]>(`${'/heroes'}/?name=${term}`).pipe(
             tap(x => x.length ?
                this.log(`found heroes matching "${term}"`) :
                this.log(`no heroes matching "${term}"`)),

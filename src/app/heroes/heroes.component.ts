@@ -13,8 +13,6 @@ export class HeroesComponent implements OnInit {
     constructor(private heroService: HeroService,
                 private dialog: MatDialog) { }
 
-/*     heroes: Hero[] = []; */
-
     ngOnInit(): void {
         this.getHeroes();
     }
@@ -22,7 +20,6 @@ export class HeroesComponent implements OnInit {
     getHeroes():void {
         this.heroService.getHeroes()
             .subscribe(heroes => {
-               /*  this.heroes = heroes; */
                 this.dataSource = heroes;
             })
     }
